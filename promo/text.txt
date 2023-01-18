@@ -1,0 +1,89 @@
+Earn steps to power up your very own Pixel Pet!
+
+Pixel Pet Plus is based on the old-school 'virtual pet' craze of the 90's. Galaxy Pixel Pet starts as an egg, hatches, evolves, and finally grows into a cute digital monster. When you reach your step goal, your pet will be fully transformed! Look at the heart meter to keep track of your progress.  Clean up after your pet by shaking your wrist. The cleaner the pet, the nicer its final form will be!
+
+Don't Forget to shake wrist (vigorously) to scare away the planet's monsters and protect your little Galaxy Bear! You might encounter snakes, robots, or bear thieves. 
+
+Pixel Pets are All Original Designs
+--------------------------------------------
+0 Hearts: 1 Egg 
+
+1 Heart : 1 Baby Galaxy Bear
+
+2 Hearts : 1 Mini Galaxy Bear
+
+3 Hearts : 1 Mini Galaxy Bear
+
+4 Hearts: 1 Robot Galaxy Bear
+
+5 Hearts : 1 Master Galaxy Bear
+
+------------------Emotions------------------
+
+Sad: Pet will turn BLUE and needs a bath
+
+Mad: Pet will turn Red and needs food
+
+Glad: Pet will turn Yellow and needs to play
+
+Good: Pet needs nothing
+
+Yawn: Pet will yawn and needs Sleep
+
+Sick: Pet will turn green and needs medicine
+
+-------------- Buttons ---------------------
+Food Button #1: Reduces Hunger
+
+Light Button #2: Gives Pet Rest
+
+Play Button #3: Play Game by shaking wrist to get points
+
+Medicine Button #4: Reduces Sickness
+
+Bath Button #5: Reduces Sadness
+
+Scale Button #6: Shows Pet Stats
+
+Discipline Button #7: Reduces Naughty Level 
+
+Attention Button # 8: Lights up to alert you
+
+Click Center: Your Health Stats. 
+
+------------------STATS------------------
+
+Clock: 12 Hour or 24 Hour
+
+Walk: Miles or KM
+
+Fire : Total Daily Calories Burned
+
+Stairs: Total Daily Floors
+
+Bolt: Total Daily Active Minutes
+
+Heart : Heart Rate
+
+Footprints: Total Daily Steps
+
+Red Hearts: Percent% of your Steps Goal
+
+___________________________
+
+
+Settings: If set active, goal, and calorie permissions are not turned on, it will print "Nan", "Null", or "0". Heart Rate activated when you click Star, click again to turn off to save battery. Heart monitor turns on when it senses change.
+
+----LARGE DOWNLOAD SIZE ----
+
+Click Website for download support or large files. For best results, connect watch to charger and download while using a strong wifi connection. Slow Download.
+
+UPDTATES :
+
+Free Beta Version is new for 2023 release, and may need updates to fix small errors. Click 'Update' to get the newest version if available. 
+
+---NOTE FROM DEVELOPER--
+
+ PAID version is $2 USD Through Keizel Pay :
+
+Check Out the free versions of Pixel Pet: https://gallery.fitbit.com/developer/850971bc-7265-471f-81f9-608d179f4ddd. Free Versions do not have emotions, games, or working buttons, but do include evolutions of pets based on steps, and pet maintenance. There are three versions of Pixel Pet: Dinosaur, Retro, and Galaxy. 
