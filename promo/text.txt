@@ -84,6 +84,6 @@ Free Beta Version is new for 2023 release, and may need updates to fix small err
 
 ---NOTE FROM DEVELOPER--
 
- PAID version is $2 USD Through Keizel Pay :
+ PAID version is $2 USD Through Keizel Pay : .Keizel handles all the payment, support, and refunds of the user.  
 
-Check Out the free versions of Pixel Pet: https://gallery.fitbit.com/developer/850971bc-7265-471f-81f9-608d179f4ddd. Free Versions do not have emotions, games, or working buttons, but do include evolutions of pets based on steps, and pet maintenance. There are three versions of Pixel Pet: Dinosaur, Retro, and Galaxy. 
+Check Out the free versions of Pixel Pet: https://gallery.fitbit.com/developer/850971bc-7265-471f-81f9-608d179f4ddd. There are three versions of Pixel Pet: Dinosaur, Retro, and Galaxy. 
