@@ -46,6 +46,7 @@ let object = document.getElementById("object");
 let poop = document.getElementById("poop");
 let buttonnumber = 0;
 let game = 0;
+let points = 0;
 let poops = 0;
 let petnaughty = 0;
 let pethyper = 0; 
@@ -178,6 +179,7 @@ if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
       game--;
       poops--;
       pethunger++;
+      points++;
     }
   });  
     display.addEventListener("change", () => {
@@ -267,9 +269,15 @@ if ((util.zeroPad(hours) == 0)&& (mins == 1)){
   if (buttonnumber == 6){
     statslabel1.class = "showLabel";
     statslabel2.class = "showLabel";
-    statslabel1.text = pethyper+ "                      " + pethunger; 
-    statslabel2.text = petnaughty+ "                    " + petdirty; 
-  } else {
+    statslabel1.text = pethyper+   "                      " + pethunger; 
+    statslabel2.text = petnaughty+ "                      " + petdirty; 
+  }
+  
+  else if (buttonnumber == 3){
+    statslabel1.class = "none";
+    statslabel2.class = "showgameLabel";
+  statslabel2.text = points;} 
+  else {
     statslabel1.class = "none";
     statslabel2.class = "none";
   }
