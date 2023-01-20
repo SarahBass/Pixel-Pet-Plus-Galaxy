@@ -72,7 +72,7 @@ const heartlabel = document.getElementById("heartlabel");
 const stairslabel = document.getElementById("stairslabel");
 const distancelabel = document.getElementById("distancelabel");
 const statslabel1 = document.getElementById("statslabel1");
-const statslabel2 = document.getElementById("statslabel1");
+const statslabel2 = document.getElementById("statslabel2");
 const button1 = document.getElementById("button-1");
 var demoinstance = document.getElementById("demoinstance");
 var demogroup = demoinstance.getElementById("demogroup");
@@ -265,11 +265,13 @@ if ((util.zeroPad(hours) == 0)&& (mins == 1)){
 }
   
   if (buttonnumber == 6){
-    statslabel1.class = "showlabel";
-    statslabel1.class = "showlabel";
+    statslabel1.class = "showLabel";
+    statslabel2.class = "showLabel";
+    statslabel1.text = pethyper+ "                      " + pethunger; 
+    statslabel2.text = petnaughty+ "                    " + petdirty; 
   } else {
     statslabel1.class = "none";
-    statslabel1.class = "none";
+    statslabel2.class = "none";
   }
   
   
