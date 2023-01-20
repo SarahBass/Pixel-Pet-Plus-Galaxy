@@ -272,6 +272,7 @@ if (buttonnumber == 2){
                     stairslabel.class  = "labelseeblue";
                     evolution.class = "none";
                     pethyper--;
+                    petnaughty--;
                     
                       if (seconds % 2 == 0){object.image = "read.jpeg";}
                       else{object.image = "read1.jpeg";}
@@ -288,11 +289,14 @@ if (buttonnumber == 2){
   //Emotions page
   if (buttonnumber == 0){
   if (version == "normal") {object.image = "blank.png";}
-  else{if seconds%2 {object.image = "blank.png";}else{object.image = "button/objectb0v" + version +"a1.png";}} 
+  else{if (seconds%2==0) {object.image = "blank.png";}else{object.image = "button/objectb0v" + version +"a1.png";}} 
   }
   
   // Food Page
-  else if (buttonnumber == 1){pethunger--;}
+  else if (buttonnumber == 1){
+    pethunger--;
+    petnaughty++;
+  }
   
   //Game Page
   else if (buttonnumber == 3){pethyper++;}
@@ -315,7 +319,9 @@ if (buttonnumber == 2){
   else if (buttonnumber == 6){object.image = "button/stats.png";}
   
   //Timeout page
-  else if (buttonnumber == 7){object.image = "button/Timeout" + seconds%2 +".png" ;}
+  else if (buttonnumber == 7){
+    petnaughty--;
+    object.image = "button/Timeout" + seconds%2 +".png" ;}
   
   
   //Change version number based on stats
@@ -335,8 +341,9 @@ if (buttonnumber == 2){
   //--------------CHANGE PET FORM IN FOREGROUND ------------------
   //pet/pet3v0a1.png
 
+  if( buttonnumber == 0){
   pet.image = "pet/pet" + pets + "v" + version + "a" + seconds%2 + ".png";
-  
+  }else {pet.image = "blank.png";}
   
     //----------Pet Evolution Egg -------------------
   if (userActivity.adjusted.steps < goals.steps/5){
