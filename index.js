@@ -70,8 +70,8 @@ const boltlabel = document.getElementById("boltlabel");
 const heartlabel = document.getElementById("heartlabel");
 const stairslabel = document.getElementById("stairslabel");
 const distancelabel = document.getElementById("distancelabel");
-const statslabel1 = document.getElementById("distancelabel");
-const statslabel2 = document.getElementById("distancelabel");
+const statslabel1 = document.getElementById("statslabel1");
+const statslabel2 = document.getElementById("statslabel1");
 const button1 = document.getElementById("button-1");
 var demoinstance = document.getElementById("demoinstance");
 var demogroup = demoinstance.getElementById("demogroup");
@@ -339,8 +339,7 @@ if (buttonnumber == 2){
   
   //stats page
   else if (buttonnumber == 6){object.image = "button/stats.png";
-        statslabel1.text = "here";
-        statslabel2.text = "here";
+
                              }
   
   //Timeout page
