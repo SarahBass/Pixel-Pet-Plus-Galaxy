@@ -263,7 +263,7 @@ if ((util.zeroPad(hours) == 0)&& (mins == 1)){
   
   //Show large text Clock if clicked
 button1.onclick = function(evt) { buttonnumber++; }
-  //Handle text changes for sleep mode
+  //Handle text changes for sleep mode Button 2
 if (buttonnumber == 2){
                     distancelabel.class = "labelseeblue";
                     firelabel.class  = "labelseeblue";
@@ -287,7 +287,8 @@ if (buttonnumber == 2){
   }
   //Emotions page
   if (buttonnumber == 0){
-  
+  if (version == "normal") {object.image = "blank.png";}
+  else{if seconds%2 {object.image = "blank.png";}else{object.image = "button/objectb0v" + version +"a1.png";}} 
   }
   
   // Food Page
@@ -306,10 +307,14 @@ if (buttonnumber == 2){
     if (seconds%2 == 0){object.image ="button/objectb4v" + version+"a0.png";}
     else{object.image ="button/objectb4vstart.png"; }}}
   
-  
+  //bath page
   else if (buttonnumber == 5){petdirty--;
                            object.image =   "button/bath" + seconds%2 +".png" ;}
+  
+  //stats page
   else if (buttonnumber == 6){object.image = "button/stats.png";}
+  
+  //Timeout page
   else if (buttonnumber == 7){object.image = "button/Timeout" + seconds%2 +".png" ;}
   
   
