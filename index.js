@@ -132,8 +132,9 @@ clock.ontick = (evt) => {
   
   //Backgrounds based on day. Game Over has special background
 
-if (userActivity.adjusted.steps > goals.steps){background.image = "gameover.jpeg";}
-  else{background.image = days + ".jpeg";}
+if (verion == "normal"){background.image = pets + ".jpeg";}
+  else{
+      background.image = version + ".jpeg";}
   
  //Pet creates waste based on steps
  if ((userActivity.adjusted.steps%10) == 0){
