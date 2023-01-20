@@ -292,14 +292,21 @@ if (buttonnumber == 2){
   
   // Food Page
   else if (buttonnumber == 1){pethunger--;}
+  
+  //Game Page
   else if (buttonnumber == 3){pethyper++;}
+  
+  
+  //Medicine Page
   else if (buttonnumber == 4){
     if (version == "sick"){
             petdirty = 0;
             object.image ="button/objectb4vsicka" + seconds%2 + ".png" ;  }
     else{
-    if (seconds%2 == 0){object.image =button/objectb4vstarta1.png}
-    else{}} }
+    if (seconds%2 == 0){object.image ="button/objectb4v" + version+"a0.png";}
+    else{object.image ="button/objectb4vstart.png"; }}}
+  
+  
   else if (buttonnumber == 5){petdirty--;
                            object.image =   "button/bath" + seconds%2 +".png" ;}
   else if (buttonnumber == 6){object.image = "button/stats.png";}
