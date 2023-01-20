@@ -75,6 +75,7 @@ const distancelabel = document.getElementById("distancelabel");
 const statslabel1 = document.getElementById("statslabel1");
 const statslabel2 = document.getElementById("statslabel2");
 const button1 = document.getElementById("button-1");
+const button2 = document.getElementById("button-2");
 var demoinstance = document.getElementById("demoinstance");
 var demogroup = demoinstance.getElementById("demogroup");
 
@@ -283,8 +284,12 @@ if ((util.zeroPad(hours) == 0)&& (mins == 1)){
   }
   
   
-  //Show large text Clock if clicked
+  //Buttons 
 button1.onclick = function(evt) { buttonnumber++; }
+  
+if (button == "off"){button2.onclick = function(evt) { button = "on"; }} 
+else {button2.onclick = function(evt) { button = "off"; }}   
+  
   //Handle text changes for sleep mode Button 2
 if (button == "on"){
                     distancelabel.class = "labelseeblue";
@@ -295,9 +300,6 @@ if (button == "on"){
                     evolution.class = "none";
                     pethyper--;
                     petnaughty--;
-                    
-                      if (seconds % 2 == 0){object.image = "read.jpeg";}
-                      else{object.image = "read1.jpeg";}
 }else{
                     
                     distancelabel.class = "none";
@@ -308,11 +310,17 @@ if (button == "on"){
                     evolution.class = "meter";
     
   }
-  //Emotions page
-  if (buttonnumber == 0){
+ 
+   //health page
+  if (button == "on"){if (seconds % 2 == 0){object.image = "read.jpeg";}
+                    else{object.image = "read1.jpeg";}}
+  else{
+ 
+     //Emotions page
+    if (buttonnumber == 0){
   if (version == "normal") {object.image = "blank.png";}
   else{if (seconds%2==0) {object.image = "blank.png";}
-       else{object.image = "button/objectb0v" + version +"a1.png";}}}
+       else{object.image = "object/indicator.png"}}}
   
   // Food Page
   else if (buttonnumber == 1){
@@ -362,7 +370,7 @@ if (button == "on"){
     pethunger++;
     object.image = "button/Timeout" + seconds%2 +".png" ;}
   
-  
+  }
   //Change version number based on stats
  
     
@@ -390,12 +398,12 @@ if (button == "on"){
     //----------Pet Evolution Egg -------------------
   if (userActivity.adjusted.steps < goals.steps/5){
   pets = 0;
-  age = 50;}
+  age = 10;}
   
    //----------Pet Evolution baby Pet -------------------
   else if ((userActivity.adjusted.steps < ((goals.steps)*2)/5) && (userActivity.adjusted.steps > ((goals.steps*1)/5))) {
          pets = 1;
-         age = 75;
+         age = 30;
     
   }
   
@@ -403,7 +411,7 @@ if (button == "on"){
   
   else if ((userActivity.adjusted.steps < ((goals.steps)*3)/5)&& (userActivity.adjusted.steps > ((goals.steps*2)/5))){
          pets = 2;
-         age = 100;
+         age = 50;
   }
   
     //----------Pet Evolution Adult Pet -------------------
@@ -411,7 +419,7 @@ if (button == "on"){
   else if ((userActivity.adjusted.steps < ((goals.steps)*4)/5)&& (userActivity.adjusted.steps > ((goals.steps*3)/5)))
            {
              pets = 3;
-             age = 200;
+             age = 60;
            }
   
     //----------Pet Evolution Robot Pet -------------------
@@ -419,18 +427,18 @@ if (button == "on"){
   else if ((userActivity.adjusted.steps < goals.steps)&& (userActivity.adjusted.steps > ((goals.steps*4)/5)))
            {
              pets = 4;
-             age = 300;
+             age = 100;
            }
   //---------Game Over Pet ------------------
   
   else if (userActivity.adjusted.steps > goals.steps){
     
     pets = 5;
-    age = 400;
+    age = 150;
     
   } else {
          pets = 1;
-         age = 100;}
+         age = 10;}
   
   
   if (userActivity.adjusted.steps < goals.steps/5){evolution.text = "♥";}
