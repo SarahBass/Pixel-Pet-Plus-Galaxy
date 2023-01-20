@@ -312,7 +312,7 @@ if (buttonnumber == 2){
   
   //Game Page
   else if (buttonnumber == 3){
-    if (game <= 3 && game >=0){
+    if (game < 3 && game >=0){
   if ((seconds%5) == 0){game++;}
       
     }
