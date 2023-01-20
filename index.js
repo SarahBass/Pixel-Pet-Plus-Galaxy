@@ -187,7 +187,7 @@ if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
   }
   
   //Change animation in background to show game over or pet waste
-  
+  if (buttonnumber == 0){
   // If in egg show snakes instead of poops
   if (userActivity.adjusted.steps < goals.steps/5 ){
   if (poops == 0) { poop.image ="blank.png"}
@@ -201,7 +201,7 @@ if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
     petnaughty++;
      if (seconds % 2 == 0){poop.image = "poop/snake4.png";}
      else{poop.image = "poop/snake5.png";}}
-    
+    else {poop.image = "blank.png";} 
   }
   
   //if not an egg or not a ghost , show poops
@@ -211,8 +211,8 @@ if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
   else if ((userActivity.adjusted.steps >= goals.steps/5) &&  (userActivity.adjusted.steps < goals.steps*3/5)){
     
   if (poops == 0) { 
-    if (seconds % 2 == 0){poop.image = "nopoop1.png";}
-     else{poop.image = "nopoop2.png";}}
+    if (seconds % 2 == 0){poop.image = "poop/nopoop1.png";}
+     else{poop.image = "poop/nopoop2.png";}}
   else if (poops == 1) {
      if (seconds % 2 == 0){poop.image = "poop/poop0.png";}
      else{poop.image = "poop/poop1.png";}}
@@ -224,6 +224,7 @@ if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
     petdirty++;
      if (seconds % 2 == 0){poop.image = "poop/poop4.png";}
      else{poop.image = "poop/poop5.png";}}
+   else {poop.image = "blank.png";}
   }
   
   //if adult or robot show monsters instead of poop
@@ -243,9 +244,10 @@ if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
     petdirty++;
      if (seconds % 2 == 0){poop.image = "poop/annoy5.png";}
      else{poop.image = "poop/annoy6.png";}}
+     else {poop.image = "blank.png";}
   }
      
-
+  }
     //last else statement 
   else {poop.image = "blank.png";}
 
@@ -348,7 +350,7 @@ if (buttonnumber == 2){
     else{ if (seconds%2==0){pet.image="pet/pet"+pets +"start.png";}else{
       pet.image = "pet/pet" + pets + "v" + version + "a1.png";
     }}
-  }
+  }else {pet.image = "blank.png";}
   
     //----------Pet Evolution Egg -------------------
   if (userActivity.adjusted.steps < goals.steps/5){
