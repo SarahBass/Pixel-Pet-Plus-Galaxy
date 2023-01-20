@@ -132,7 +132,7 @@ clock.ontick = (evt) => {
   
   //Backgrounds based on day. Game Over has special background
 
-if (verion == "normal"){background.image = pets + ".jpeg";}
+if (version  == "normal"){background.image = pets + ".jpeg";}
   else{
       background.image = version + ".jpeg";}
   
