@@ -70,6 +70,8 @@ const boltlabel = document.getElementById("boltlabel");
 const heartlabel = document.getElementById("heartlabel");
 const stairslabel = document.getElementById("stairslabel");
 const distancelabel = document.getElementById("distancelabel");
+const statslabel1 = document.getElementById("distancelabel");
+const statslabel2 = document.getElementById("distancelabel");
 const button1 = document.getElementById("button-1");
 var demoinstance = document.getElementById("demoinstance");
 var demogroup = demoinstance.getElementById("demogroup");
@@ -131,37 +133,35 @@ if (userActivity.adjusted.steps > goals.steps){background.image = "gameover.jpeg
   else{background.image = days + ".jpeg";}
   
  //Pet creates waste based on steps
- if ((userActivity.adjusted.steps%50) == 0){poops++;}
+ if ((userActivity.adjusted.steps%50) == 0){
+   poops++;
+   pethunger++; 
+ }
   if (poops <= 0 ) {poops = 0;}
   if (poops >= 5){poops = 5}
   
-  
-   //Game works like poops
-
-  if (game <= 0 ) {game = 0;}
-  if (game >= 3){game = 3}
   
   //Not Cleaning makes Pet Naughty to level 1000
   if ( petnaughty >= 1000){petnaughty = 1000;}
   if (petnaughty <= 0){petnaughty = 0;}
   
-    //Not Cleaning makes Pet Naughty to level 1000
+    
   if ( pethunger >= 1000){pethunger = 1000;}
   if (pethunger <= 0){pethunger = 0;}
   
-      //Not Cleaning makes Pet Naughty to level 1000
+  //Not Cleaning makes Pet Naughty to level 1000
   if ( petdirty >= 1000){petdirty = 1000;}
   if (petdirty <= 0){petdirty = 0;}
   
   
-       //Not Cleaning makes Pet Naughty to level 1000
+ 
   if ( pethyper >= 1000){pethyper = 1000;}
   if (pethyper <= 0){pethyper = 0;}
   
   
   //Toggle through 7 button options
   if ( buttonnumber >7){buttonnumber = 0;}
-  if (pethyper <= 0){pethyper = 0;}
+  if (buttonnumber <= 0){buttonnumber = 0;}
   
         //Move hand to clean Pet Poop only if poop level is more than 0
     //Reduce Accelerometer as much as possible and use batches and lower frequency
@@ -173,9 +173,11 @@ if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
    //console.log("Basic Level: " + basic);
    const accelerometer = new Accelerometer({ frequency: 30, batch: 60 });
    accelerometer.addEventListener("reading", () => { 
-    if (accelerometer.y > 10){   
+    if (accelerometer.y > 7){   
       game--;
-      poops--;}
+      poops--;
+      pethunger++;
+    }
   });  
     display.addEventListener("change", () => {
     // Automatically stop the sensor when the screen is off to conserve battery
@@ -258,7 +260,16 @@ if ((util.zeroPad(hours) == 0)&& (mins == 1)){
  pethyper=0;
   petdirty=0;
   pethunger = 0;
+  buttonnumber = 0;
 }
+  
+  if (buttonnumber == 6){
+    statslabel1.class = "showlabel";
+    statslabel1.class = "showlabel";
+  } else {
+    statslabel1.class = "none";
+    statslabel1.class = "none";
+  }
   
   
   //Show large text Clock if clicked
@@ -301,6 +312,11 @@ if (buttonnumber == 2){
   
   //Game Page
   else if (buttonnumber == 3){
+    if (game <= 3 && game >=0){
+  if ((seconds%5) == 0){game++;}
+      
+    }
+    pethunger++;
     pethyper++;
   object.image = "button/objectb3gamefrogv"+game+"a" + seconds%2+".png";
   }
@@ -312,19 +328,25 @@ if (buttonnumber == 2){
             petdirty = 0;
             object.image ="button/objectb4vsicka" + seconds%2 + ".png" ;  }
     else{
+      pethyper++;
     if (seconds%2 == 0){object.image ="button/objectb4v" + version+"a0.png";}
     else{object.image ="button/objectb4vstart.png"; }}}
   
   //bath page
   else if (buttonnumber == 5){petdirty--;
+                              pethyper++;
                            object.image =   "button/bath" + seconds%2 +".png" ;}
   
   //stats page
-  else if (buttonnumber == 6){object.image = "button/stats.png";}
+  else if (buttonnumber == 6){object.image = "button/stats.png";
+        statslabel1.text = "here";
+        statslabel2.text = "here";
+                             }
   
   //Timeout page
   else if (buttonnumber == 7){
     petnaughty--;
+    pethunger++;
     object.image = "button/Timeout" + seconds%2 +".png" ;}
   
   
