@@ -135,7 +135,7 @@ if (userActivity.adjusted.steps > goals.steps){background.image = "gameover.jpeg
   else{background.image = days + ".jpeg";}
   
  //Pet creates waste based on steps
- if ((userActivity.adjusted.steps%50) == 0){
+ if ((userActivity.adjusted.steps%10) == 0){
    poops++;
    pethunger++; 
  }
@@ -390,12 +390,12 @@ if (button == "on"){
     //----------Pet Evolution Egg -------------------
   if (userActivity.adjusted.steps < goals.steps/5){
   pets = 0;
-  age = 100;}
+  age = 50;}
   
    //----------Pet Evolution baby Pet -------------------
   else if ((userActivity.adjusted.steps < ((goals.steps)*2)/5) && (userActivity.adjusted.steps > ((goals.steps*1)/5))) {
          pets = 1;
-         age = 200;
+         age = 75;
     
   }
   
@@ -403,7 +403,7 @@ if (button == "on"){
   
   else if ((userActivity.adjusted.steps < ((goals.steps)*3)/5)&& (userActivity.adjusted.steps > ((goals.steps*2)/5))){
          pets = 2;
-         age = 300;
+         age = 100;
   }
   
     //----------Pet Evolution Adult Pet -------------------
@@ -411,7 +411,7 @@ if (button == "on"){
   else if ((userActivity.adjusted.steps < ((goals.steps)*4)/5)&& (userActivity.adjusted.steps > ((goals.steps*3)/5)))
            {
              pets = 3;
-             age = 400;
+             age = 200;
            }
   
     //----------Pet Evolution Robot Pet -------------------
@@ -419,18 +419,18 @@ if (button == "on"){
   else if ((userActivity.adjusted.steps < goals.steps)&& (userActivity.adjusted.steps > ((goals.steps*4)/5)))
            {
              pets = 4;
-             age = 500;
+             age = 300;
            }
   //---------Game Over Pet ------------------
   
   else if (userActivity.adjusted.steps > goals.steps){
     
     pets = 5;
-    age = 600;
+    age = 400;
     
   } else {
          pets = 1;
-         age = 200;}
+         age = 100;}
   
   
   if (userActivity.adjusted.steps < goals.steps/5){evolution.text = "♥";}
