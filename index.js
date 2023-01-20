@@ -321,7 +321,7 @@ if (button == "on"){
     if (buttonnumber == 0){
   if (version == "normal") {object.image = "blank.png";}
   else{if (seconds%2==0) {object.image = "blank.png";}
-       else{object.image = "object/indicator.png"}}}
+       else{object.image = "button/indicator.png"}}}
   
   // Food Page
   else if (buttonnumber == 1){
