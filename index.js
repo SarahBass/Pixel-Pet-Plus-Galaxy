@@ -254,7 +254,7 @@ if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
     }
 
     //last else statement 
-  else {poop.image = "blank.png";}}
+  else {poop.image = "blank.png";}
 
  //Reset stats at midnight
 if ((util.zeroPad(hours) == 0)&& (mins == 1)){
