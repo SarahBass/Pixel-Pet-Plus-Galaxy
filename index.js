@@ -351,8 +351,11 @@ if (buttonnumber == 2){
   //pet/pet3v0a1.png
 
   if( buttonnumber == 0){
-  pet.image = "pet/pet" + pets + "v" + version + "a" + seconds%2 + ".png";
-  }else {pet.image = "blank.png";}
+    if (pets == 2){ pet.image = "pet/pet" + pets + "v" + version + "a" + seconds%2 + ".png";}
+    else{ if (seconds%2==0){pet.image="pet/pet"+pets +"start.png";}else{
+      pet.image = "pet/pet" + pets + "v" + version + "a1.png";
+    }}
+  }
   
     //----------Pet Evolution Egg -------------------
   if (userActivity.adjusted.steps < goals.steps/5){
@@ -395,8 +398,9 @@ if (buttonnumber == 2){
     pets = 5;
     age = 600;
     
-  } else { if (seconds % 2 == 0){pet.image = "pet/pet1animate0.png";}
-     else{pet.image = "pet/pet1animate1.png";}}
+  } else {
+         pets = 1;
+         age = 200;}
   
   
   if (userActivity.adjusted.steps < goals.steps/5){evolution.text = "♥";}
