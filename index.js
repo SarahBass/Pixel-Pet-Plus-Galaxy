@@ -211,24 +211,24 @@ if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
   else if ((userActivity.adjusted.steps >= goals.steps/5) &&  (userActivity.adjusted.steps < goals.steps*3/5)){
     
   if (poops == 0) { 
-    if (seconds % 2 == 0){poop.image = "poop/nopoop1.png";}
-     else{poop.image = "poop/nopoop2.png";}}
+    if (seconds % 2 == 0){poop.image = "nopoop1.png";}
+     else{poop.image = "nopoop2.png";}}
   else if (poops == 1) {
-     if (seconds % 2 == 0){poop.image = "poop/poop1.png";}
-     else{poop.image = "poop/poop2.png";}}
+     if (seconds % 2 == 0){poop.image = "poop/poop0.png";}
+     else{poop.image = "poop/poop1.png";}}
   else if (poops == 2) {
-     if (seconds % 2 == 0){poop.image = "poop/poop3.png";}
-     else{poop.image = "poop/poop4.png";}}
+     if (seconds % 2 == 0){poop.image = "poop/poop2.png";}
+     else{poop.image = "poop/poop3.png";}}
   else if (poops > 2) {
     petnaughty++;
     petdirty++;
-     if (seconds % 2 == 0){poop.image = "poop/poop5.png";}
-     else{poop.image = "poop/poop6.png";}}
+     if (seconds % 2 == 0){poop.image = "poop/poop4.png";}
+     else{poop.image = "poop/poop5.png";}}
   }
   
   //if adult or robot show monsters instead of poop
   
-   else if ((userActivity.adjusted.steps >= goals.steps*3/5) &&  (userActivity.adjusted.steps < goals.steps)){
+   else if (userActivity.adjusted.steps >= goals.steps*3/5){
      if (poops == 0) { 
     if (seconds % 2 == 0){poop.image = "poop/nice1.png";}
      else{poop.image = "poop/nice2.png";}}
@@ -245,13 +245,6 @@ if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
      else{poop.image = "poop/annoy6.png";}}
   }
      
-  
-   
-    //If a ghost, show game over + seconds%2 + ".png";
-    else if (userActivity.adjusted.steps >= goals.steps) {
-          if (seconds % 2 == 0){poop.image = "poop/gameover.png";}
-     else{poop.image = "blank.png";}
-    }
 
     //last else statement 
   else {poop.image = "blank.png";}
