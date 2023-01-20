@@ -45,6 +45,7 @@ let pet = document.getElementById("pet");
 let object = document.getElementById("object");
 let poop = document.getElementById("poop");
 let buttonnumber = 0;
+let game = 0;
 let poops = 0;
 let petnaughty = 0;
 let pethyper = 0; 
@@ -135,6 +136,11 @@ if (userActivity.adjusted.steps > goals.steps){background.image = "gameover.jpeg
   if (poops >= 5){poops = 5}
   
   
+   //Game works like poops
+
+  if (game <= 0 ) {game = 0;}
+  if (game >= 3){game = 3}
+  
   //Not Cleaning makes Pet Naughty to level 1000
   if ( petnaughty >= 1000){petnaughty = 1000;}
   if (petnaughty <= 0){petnaughty = 0;}
@@ -167,8 +173,8 @@ if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
    //console.log("Basic Level: " + basic);
    const accelerometer = new Accelerometer({ frequency: 30, batch: 60 });
    accelerometer.addEventListener("reading", () => { 
-    if (accelerometer.y > 4){   
-      //annoy--;
+    if (accelerometer.y > 10){   
+      game--;
       poops--;}
   });  
     display.addEventListener("change", () => {
@@ -248,8 +254,7 @@ if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
     }
 
     //last else statement 
-  else {if (seconds % 2 == 0){poop.image = "blank.png";}
-     else{poop.image = "blank.png";}}
+  else {poop.image = "blank.png";}}
 
  //Reset stats at midnight
 if ((util.zeroPad(hours) == 0)&& (mins == 1)){
@@ -289,17 +294,21 @@ if (buttonnumber == 2){
   //Emotions page
   if (buttonnumber == 0){
   if (version == "normal") {object.image = "blank.png";}
-  else{if (seconds%2==0) {object.image = "blank.png";}else{object.image = "button/objectb0v" + version +"a1.png";}} 
-  }
+  else{if (seconds%2==0) {object.image = "blank.png";}
+       else{object.image = "button/objectb0v" + version +"a1.png";}}}
   
   // Food Page
   else if (buttonnumber == 1){
+    object.image = "button/objectb1v"+mins%2+"a"+seconds%2+".png";
     pethunger--;
     petnaughty++;
   }
   
   //Game Page
-  else if (buttonnumber == 3){pethyper++;}
+  else if (buttonnumber == 3){
+    pethyper++;
+  object.image = "button/objectb3gamefrogv"+game+"a" + seconds%2+".png";
+  }
   
   
   //Medicine Page
