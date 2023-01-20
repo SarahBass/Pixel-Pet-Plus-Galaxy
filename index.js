@@ -51,6 +51,7 @@ let petnaughty = 0;
 let pethyper = 0; 
 let petdirty = 0;
 let pethunger = 0;
+let button = "off";
 //let basic = 0;
 let pets = 0;
 let version = "normal";
@@ -275,7 +276,7 @@ if ((util.zeroPad(hours) == 0)&& (mins == 1)){
   //Show large text Clock if clicked
 button1.onclick = function(evt) { buttonnumber++; }
   //Handle text changes for sleep mode Button 2
-if (buttonnumber == 2){
+if (button == "on"){
                     distancelabel.class = "labelseeblue";
                     firelabel.class  = "labelseeblue";
                     boltlabel.class  = "labelseeblue";
@@ -309,6 +310,11 @@ if (buttonnumber == 2){
     pethunger--;
     petnaughty++;
   }
+  //sleep page
+    else if (buttonnumber == 2){
+   pethyper--;
+    petnaughty--;
+    object.image = "button/sleep" + seconds%2 +".png" ;}
   
   //Game Page
   else if (buttonnumber == 3){
@@ -338,9 +344,7 @@ if (buttonnumber == 2){
                            object.image =   "button/bath" + seconds%2 +".png" ;}
   
   //stats page
-  else if (buttonnumber == 6){object.image = "button/stats.png";
-
-                             }
+  else if (buttonnumber == 6){object.image = "button/stats.png"; }
   
   //Timeout page
   else if (buttonnumber == 7){
