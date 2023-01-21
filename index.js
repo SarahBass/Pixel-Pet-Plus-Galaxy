@@ -130,135 +130,36 @@ clock.ontick = (evt) => {
   else{ampm.text = "AM";}
   
   
-  //Backgrounds based on day. Game Over has special background
+ //Backgrounds based on Emotion and Pet Evolution
 
 if (version  == "normal"){background.image = pets + ".jpeg";}
-  else{
-      background.image = version + ".jpeg";}
+  else{ background.image = version + ".jpeg";}
   
- //Pet creates waste based on steps
- if ((userActivity.adjusted.steps%10) == 0){
+  //-----------------------------------------------
+  //Manage Data 
+  
+  //Pet creates waste based on steps
+ if ((userActivity.adjusted.steps%50) == 0){
    poops++;
    pethunger++; 
  }
+
   if (poops <= 0 ) {poops = 0;}
   if (poops >= 5){poops = 5}
   
-  
-  //Not Cleaning makes Pet Naughty to level 1000
   if ( petnaughty >= 1000){petnaughty = 1000;}
   if (petnaughty <= 0){petnaughty = 0;}
   
-    
   if ( pethunger >= 1000){pethunger = 1000;}
   if (pethunger <= 0){pethunger = 0;}
   
-  //Not Cleaning makes Pet Naughty to level 1000
   if ( petdirty >= 1000){petdirty = 1000;}
   if (petdirty <= 0){petdirty = 0;}
   
-  
- 
   if ( pethyper >= 1000){pethyper = 1000;}
   if (pethyper <= 0){pethyper = 0;}
   
-  
-  //Toggle through 7 button options
-  if ( buttonnumber >7){buttonnumber = 0;}
-  if (buttonnumber <= 0){buttonnumber = 0;}
-  
-        //Move hand to clean Pet Poop only if poop level is more than 0
-    //Reduce Accelerometer as much as possible and use batches and lower frequency
-  
-if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
- if (Accelerometer) {
-   //console.log("Poop Level: " + poops);
-   //console.log("Naughty Level: " + petnaughty);
-   //console.log("Basic Level: " + basic);
-   const accelerometer = new Accelerometer({ frequency: 30, batch: 60 });
-   accelerometer.addEventListener("reading", () => { 
-    if (accelerometer.y > 7){   
-      game--;
-      poops--;
-      pethunger++;
-      points++;
-    }
-  });  
-    display.addEventListener("change", () => {
-    // Automatically stop the sensor when the screen is off to conserve battery
-    display.on ? accel.start() : accel.stop();
-  });
-       accelerometer.start();
-  }
-  else {console.log("This device does NOT have an Accelerometer!");}
-  }
-  
-  //Change animation in background to show game over or pet waste
-  if (buttonnumber == 0){
-  // If in egg show snakes instead of poops
-  if (userActivity.adjusted.steps < goals.steps/5 ){
-  if (poops == 0) { poop.image ="blank.png"}
-  else if (poops == 1) {
-     if (seconds % 2 == 0){poop.image = "poop/snake0.png";}
-     else{poop.image = "poop/snake1.png";}}
-  else if (poops == 2) {
-     if (seconds % 2 == 0){poop.image = "poop/snake2.png";}
-     else{poop.image = "poop/snake3.png";}}
-  else if (poops > 2) {
-    petnaughty++;
-     if (seconds % 2 == 0){poop.image = "poop/snake4.png";}
-     else{poop.image = "poop/snake5.png";}}
-    else {poop.image = "blank.png";} 
-  }
-  
-  //if not an egg or not a ghost , show poops
-  
-  //if 0 poops , shows annow every 50 steps
-  
-  else if ((userActivity.adjusted.steps >= goals.steps/5) &&  (userActivity.adjusted.steps < goals.steps*3/5)){
-    
-  if (poops == 0) { 
-    if (seconds % 2 == 0){poop.image = "poop/nopoop1.png";}
-     else{poop.image = "poop/nopoop2.png";}}
-  else if (poops == 1) {
-     if (seconds % 2 == 0){poop.image = "poop/poop0.png";}
-     else{poop.image = "poop/poop1.png";}}
-  else if (poops == 2) {
-     if (seconds % 2 == 0){poop.image = "poop/poop2.png";}
-     else{poop.image = "poop/poop3.png";}}
-  else if (poops > 2) {
-    petnaughty++;
-    petdirty++;
-     if (seconds % 2 == 0){poop.image = "poop/poop4.png";}
-     else{poop.image = "poop/poop5.png";}}
-   else {poop.image = "blank.png";}
-  }
-  
-  //if adult or robot show monsters instead of poop
-  
-   else if (userActivity.adjusted.steps >= goals.steps*3/5){
-     if (poops == 0) { 
-    if (seconds % 2 == 0){poop.image = "poop/nice1.png";}
-     else{poop.image = "poop/nice2.png";}}
-  else if (poops == 1) {
-     if (seconds % 2 == 0){poop.image = "poop/annoy1.png";}
-     else{poop.image = "poop/annoy2.png";}}
-  else if (poops == 2) {
-     if (seconds % 2 == 0){poop.image = "poop/annoy3.png";}
-     else{poop.image = "poop/annoy4.png";}}
-  else if (poops > 2) {
-    petnaughty++;
-    petdirty++;
-     if (seconds % 2 == 0){poop.image = "poop/annoy5.png";}
-     else{poop.image = "poop/annoy6.png";}}
-     else {poop.image = "blank.png";}
-  }
-     
-  }
-    //last else statement 
-  else {poop.image = "blank.png";}
-
- //Reset stats at midnight
+   //Reset stats at midnight
 if ((util.zeroPad(hours) == 0)&& (mins == 1)){
   petnaughty = 0;
   poops = 0;
@@ -268,6 +169,25 @@ if ((util.zeroPad(hours) == 0)&& (mins == 1)){
   buttonnumber = 0;
 }
   
+    //Buttons 
+    button1.onclick = function(evt) { buttonnumber++; }
+  
+    if (button == "off"){button2.onclick = function(evt) { button = "on"; }} 
+    else {button2.onclick = function(evt) { button = "off"; }}  
+  
+    //Toggle through 7 button options
+    if ( buttonnumber >7){buttonnumber = 0;}
+    if (buttonnumber <= 0){buttonnumber = 0;}
+  
+   //-----------------------------------------------
+  
+ //Move hand to clean Pet Poop or scare away monsters
+ poopcleanup();
+  
+  //Change animation in background to show pet waste or enemies
+   showpoop();
+ 
+
   if (buttonnumber == 6){
     statslabel1.class = "showLabel";
     statslabel2.class = "showLabel";
@@ -285,11 +205,7 @@ if ((util.zeroPad(hours) == 0)&& (mins == 1)){
   }
   
   
-  //Buttons 
-button1.onclick = function(evt) { buttonnumber++; }
-  
-if (button == "off"){button2.onclick = function(evt) { button = "on"; }} 
-else {button2.onclick = function(evt) { button = "off"; }}   
+ 
   
   //Handle text changes for sleep mode Button 2
 if (button == "on"){
@@ -301,6 +217,10 @@ if (button == "on"){
                     evolution.class = "none";
                     pethyper--;
                     petnaughty--;
+                    pethunger --;
+                    petdirty--;
+                    buttonnumber=0;
+
 }else{
                     
                     distancelabel.class = "none";
@@ -326,7 +246,7 @@ if (button == "on"){
   // Food Page
   else if (buttonnumber == 1){
     object.image = "button/objectb1v"+mins%2+"a"+seconds%2+".png";
-    pethunger--;
+    pethunger=0;
     petnaughty++;
   }
   //sleep page
@@ -350,8 +270,9 @@ if (button == "on"){
   //Medicine Page
   else if (buttonnumber == 4){
     if (version == "sick"){
-            petdirty = 0;
-            object.image ="button/objectb4vsicka" + seconds%2 + ".png" ;  }
+            if (seconds%3 == 0){petdirty = 0;} 
+            object.image ="button/objectb4vsicka" + seconds%2 + ".png" ;
+    }
     else{
       pethyper++;
     if (seconds%2 == 0){object.image ="button/objectb4v" + version+"a0.png";}
@@ -367,7 +288,8 @@ if (button == "on"){
   
   //Timeout page
   else if (buttonnumber == 7){
-    petnaughty--;
+    petnaughty=0;
+    petdirty++;
     pethunger++;
     object.image = "button/Timeout" + seconds%2 +".png" ;}
   
@@ -482,7 +404,99 @@ function checkAndUpdateBatteryLevel() {
         battery.onchange = (charger, evt) => {batteryLabel.class = "labelgreen";}}
 }
  
+
+  function poopcleanup(){
+    if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
+ if (Accelerometer) {
+   //console.log("Poop Level: " + poops);
+   //console.log("Naughty Level: " + petnaughty);
+   //console.log("Basic Level: " + basic);
+   const accelerometer = new Accelerometer({ frequency: 30, batch: 60 });
+   accelerometer.addEventListener("reading", () => { 
+    if (accelerometer.y > 5){   
+      game--;
+      poops--;
+      pethunger++;
+      points++;
+    }
+  });  
+    display.addEventListener("change", () => {
+    // Automatically stop the sensor when the screen is off to conserve battery
+    display.on ? accel.start() : accel.stop();
+  });
+       accelerometer.start();
+  }
+  else {console.log("This device does NOT have an Accelerometer!");}
+  }
+  }
   
+  
+  function showpoop(){
+     if (buttonnumber == 0){
+  // If in egg show snakes instead of poops
+  if (userActivity.adjusted.steps < goals.steps/5 ){
+  if (poops == 0) { poop.image ="blank.png"}
+  else if (poops == 1) {
+     if (seconds % 2 == 0){poop.image = "poop/snake0.png";}
+     else{poop.image = "poop/snake1.png";}}
+  else if (poops == 2) {
+     if (seconds % 2 == 0){poop.image = "poop/snake2.png";}
+     else{poop.image = "poop/snake3.png";}}
+  else if (poops > 2) {
+    petnaughty++;
+     if (seconds % 2 == 0){poop.image = "poop/snake4.png";}
+     else{poop.image = "poop/snake5.png";}}
+    else {poop.image = "blank.png";} 
+  }
+  
+  //if not an egg or not a ghost , show poops
+  
+  //if 0 poops , shows annow every 50 steps
+  
+  else if ((userActivity.adjusted.steps >= goals.steps/5) &&  (userActivity.adjusted.steps < goals.steps*3/5)){
+    
+  if (poops == 0) { 
+    if (seconds % 2 == 0){poop.image = "poop/nopoop1.png";}
+     else{poop.image = "poop/nopoop2.png";}}
+  else if (poops == 1) {
+     if (seconds % 2 == 0){poop.image = "poop/poop0.png";}
+     else{poop.image = "poop/poop1.png";}}
+  else if (poops == 2) {
+     if (seconds % 2 == 0){poop.image = "poop/poop2.png";}
+     else{poop.image = "poop/poop3.png";}}
+  else if (poops > 2) {
+    petnaughty++;
+    petdirty++;
+     if (seconds % 2 == 0){poop.image = "poop/poop4.png";}
+     else{poop.image = "poop/poop5.png";}}
+   else {poop.image = "blank.png";}
+  }
+  
+  //if adult or robot show monsters instead of poop
+  
+   else if (userActivity.adjusted.steps >= goals.steps*3/5){
+     if (poops == 0) { 
+    if (seconds % 2 == 0){poop.image = "poop/nice1.png";}
+     else{poop.image = "poop/nice2.png";}}
+  else if (poops == 1) {
+     if (seconds % 2 == 0){poop.image = "poop/annoy1.png";}
+     else{poop.image = "poop/annoy2.png";}}
+  else if (poops == 2) {
+     if (seconds % 2 == 0){poop.image = "poop/annoy3.png";}
+     else{poop.image = "poop/annoy4.png";}}
+  else if (poops > 2) {
+    petnaughty++;
+    petdirty++;
+     if (seconds % 2 == 0){poop.image = "poop/annoy5.png";}
+     else{poop.image = "poop/annoy6.png";}}
+     else {poop.image = "blank.png";}
+  }
+     
+  }
+    //last else statement 
+  else {poop.image = "blank.png";}
+
+  }
   
 /*--- Change Date and Background Functions ---*/
 
