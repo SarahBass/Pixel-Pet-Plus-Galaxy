@@ -53,11 +53,8 @@ let pethyper = 0;
 let petdirty = 0;
 let pethunger = 0;
 let button = "off";
-//let basic = 0;
 let pets = 0;
 let version = "normal";
-//let annoy = 0;
-//let sad = 0;
 let age = 0;
 
 //Update the clock every second 
@@ -95,7 +92,7 @@ var demogroup = demoinstance.getElementById("demogroup");
 
 
 
-/*--- CLOCK START ---*/
+/*------------------- CLOCK START ---------------------*/
 clock.ontick = (evt) => {
 
   let today = evt.date;
@@ -118,17 +115,32 @@ clock.ontick = (evt) => {
   stairslabel.text = userActivity.adjusted.elevationGain;
   stepsLabel.text = userActivity.adjusted.steps;
   firelabel.text = userActivity.adjusted.calories;
- // targetlabel.text = parseInt(userActivity.adjusted.steps/goals.steps * 100) + "%";
   boltlabel.text = userActivity.adjusted.activeZoneMinutes.total;
   heartlabel.text = "off";  
   checkAndUpdateBatteryLevel();
-
-
   
   //AM PM -Change the image based on 24 hours
   if (util.zeroPad(hours) >= 12){ampm.text = "PM";}
   else{ampm.text = "AM";}
+
+   /*--- OPTION 2: TIME IMAGES FOR 12 HOUR CLOCK---*/
+  //set class of each # IMAGE individually if needed for formatting
+  if (preferences.clockDisplay === "12h") {
+    // 12h format
+    hours = hours % 12 || 12;
+  }else {hours = util.zeroPad(hours);}
   
+   /*--- CLOCK ---*/
+  myLabel.text = `${hours}:${mins}`; 
+  
+    /*--- Battery ---*/
+  display.addEventListener('change', function () { if (this.on) {checkAndUpdateBatteryLevel();}
+                                             
+});
+  
+  /*----------------------------SHOW CLOCK END----------------------------------*/ 
+  
+  /*----------------------------SHOW GAME START--------------------------------------*/  
   
  //Backgrounds based on Emotion and Pet Evolution
 
@@ -179,123 +191,18 @@ if ((util.zeroPad(hours) == 0)&& (mins == 1)){
     if ( buttonnumber >7){buttonnumber = 0;}
     if (buttonnumber <= 0){buttonnumber = 0;}
   
-   //-----------------------------------------------
   
- //Move hand to clean Pet Poop or scare away monsters
- poopcleanup();
+   //Move hand to clean Pet Poop or scare away monsters
+   poopcleanup();
   
   //Change animation in background to show pet waste or enemies
    showpoop();
  
-
-  if (buttonnumber == 6){
-    statslabel1.class = "showLabel";
-    statslabel2.class = "showLabel";
-    statslabel1.text = pethyper+   "                      " + pethunger; 
-    statslabel2.text = petnaughty+ "                      " + petdirty; 
-  }
+  //change page based on buttonnumber
+  changePages();
   
-  else if (buttonnumber == 3){
-    statslabel1.class = "none";
-    statslabel2.class = "showgameLabel";
-  statslabel2.text = points;} 
-  else {
-    statslabel1.class = "none";
-    statslabel2.class = "none";
-  }
-  
-  
- 
-  
-  //Handle text changes for sleep mode Button 2
-if (button == "on"){
-                    distancelabel.class = "labelseeblue";
-                    firelabel.class  = "labelseeblue";
-                    boltlabel.class  = "labelseeblue";
-                    heartlabel.class  = "labelseeblue";
-                    stairslabel.class  = "labelseeblue";
-                    evolution.class = "none";
-                    pethyper--;
-                    petnaughty--;
-                    pethunger --;
-                    petdirty--;
-                    buttonnumber=0;
-
-}else{
-                    
-                    distancelabel.class = "none";
-                    firelabel.class  = "none";
-                    boltlabel.class  = "none";
-                    heartlabel.class  = "none";
-                    stairslabel.class  = "none";
-                    evolution.class = "meter";
-    
-  }
- 
-   //health page
-  if (button == "on"){if (seconds % 2 == 0){object.image = "read.jpeg";}
-                    else{object.image = "read1.jpeg";}}
-  else{
- 
-     //Emotions page
-    if (buttonnumber == 0){
-  if (version == "normal") {object.image = "blank.png";}
-  else{if (seconds%2==0) {object.image = "blank.png";}
-       else{object.image = "button/indicator.png"}}}
-  
-  // Food Page
-  else if (buttonnumber == 1){
-    object.image = "button/objectb1v"+mins%2+"a"+seconds%2+".png";
-    pethunger=0;
-    petnaughty++;
-  }
-  //sleep page
-    else if (buttonnumber == 2){
-   pethyper--;
-    petnaughty--;
-    object.image = "button/sleep" + seconds%2 +".png" ;}
-  
-  //Game Page
-  else if (buttonnumber == 3){
-    if (game < 3 && game >=0){
-  if ((seconds%5) == 0){game++;}
-      
-    }
-    pethunger++;
-    pethyper++;
-  object.image = "button/objectb3gamefrogv"+game+"a" + seconds%2+".png";
-  }
-  
-  
-  //Medicine Page
-  else if (buttonnumber == 4){
-    if (version == "sick"){
-            if (seconds%3 == 0){petdirty = 0;} 
-            object.image ="button/objectb4vsicka" + seconds%2 + ".png" ;
-    }
-    else{
-      pethyper++;
-    if (seconds%2 == 0){object.image ="button/objectb4v" + version+"a0.png";}
-    else{object.image ="button/objectb4vstart.png"; }}}
-  
-  //bath page
-  else if (buttonnumber == 5){petdirty--;
-                              pethyper++;
-                           object.image =   "button/bath" + seconds%2 +".png" ;}
-  
-  //stats page
-  else if (buttonnumber == 6){object.image = "button/stats.png"; }
-  
-  //Timeout page
-  else if (buttonnumber == 7){
-    petnaughty=0;
-    petdirty++;
-    pethunger++;
-    object.image = "button/Timeout" + seconds%2 +".png" ;}
-  
-  }
   //Change version number based on stats
- 
+   changepet();
     
     //if (basic > age) { 
     if (petnaughty > age){version = "mad";}
@@ -304,13 +211,6 @@ if (button == "on"){
   else if (pethyper > age){version = "happy";}
     else {version = "normal";}
 
-
-
-    //----------Pet Evolution Baby Pet -------------------
-  
-  //--------------CHANGE PET FORM IN FOREGROUND ------------------
-  //pet/pet3v0a1.png
-
   if( buttonnumber == 0){
     if (pets == 2){ pet.image = "pet/pet" + pets + "v" + version + "a" + seconds%2 + ".png";}
     else{ if (seconds%2==0){pet.image="pet/pet"+pets +"start.png";}else{
@@ -318,80 +218,12 @@ if (button == "on"){
     }}
   }else {pet.image = "blank.png";}
   
-    //----------Pet Evolution Egg -------------------
-  if (userActivity.adjusted.steps < goals.steps/5){
-  pets = 0;
-  age = 10;}
-  
-   //----------Pet Evolution baby Pet -------------------
-  else if ((userActivity.adjusted.steps < ((goals.steps)*2)/5) && (userActivity.adjusted.steps > ((goals.steps*1)/5))) {
-         pets = 1;
-         age = 30;
-    
-  }
-  
-  //----------Pet Evolution baby Pet -------------------
-  
-  else if ((userActivity.adjusted.steps < ((goals.steps)*3)/5)&& (userActivity.adjusted.steps > ((goals.steps*2)/5))){
-         pets = 2;
-         age = 50;
-  }
-  
-    //----------Pet Evolution Adult Pet -------------------
-  
-  else if ((userActivity.adjusted.steps < ((goals.steps)*4)/5)&& (userActivity.adjusted.steps > ((goals.steps*3)/5)))
-           {
-             pets = 3;
-             age = 60;
-           }
-  
-    //----------Pet Evolution Robot Pet -------------------
-  
-  else if ((userActivity.adjusted.steps < goals.steps)&& (userActivity.adjusted.steps > ((goals.steps*4)/5)))
-           {
-             pets = 4;
-             age = 100;
-           }
-  //---------Game Over Pet ------------------
-  
-  else if (userActivity.adjusted.steps > goals.steps){
-    
-    pets = 5;
-    age = 150;
-    
-  } else {
-         pets = 1;
-         age = 10;}
-  
-  
-  if (userActivity.adjusted.steps < goals.steps/5){evolution.text = "♥";}
-  else if ((userActivity.adjusted.steps < ((goals.steps)*2)/5) && (userActivity.adjusted.steps > ((goals.steps*1)/5))) {evolution.text = "♥♥";}
-  else if ((userActivity.adjusted.steps < ((goals.steps)*3)/5)&& (userActivity.adjusted.steps > ((goals.steps*2)/5)))
-  {evolution.text = "♥♥♥";}
-  else if ((userActivity.adjusted.steps < ((goals.steps)*4)/5)&& (userActivity.adjusted.steps > ((goals.steps*3)/5)))
-           {evolution.text = "♥♥♥♥";}
-  else if ((userActivity.adjusted.steps < goals.steps)&& (userActivity.adjusted.steps > ((goals.steps*4)/5)))
-           {evolution.text = "♥♥♥♥♥";}
-  else if (userActivity.adjusted.steps > goals.steps){evolution.text = "♥♥♥♥♥♥";}
-  else {evolution.text = "";}
+  //Show Heart Meter
 
- 
-  
-   /*--- OPTION 2: TIME IMAGES FOR 12 HOUR CLOCK---*/
-  //set class of each # IMAGE individually if needed for formatting
-  if (preferences.clockDisplay === "12h") {
-    // 12h format
-    hours = hours % 12 || 12;
-  }else {hours = util.zeroPad(hours);}
-  myLabel.text = `${hours}:${mins}`; 
-  /*----------------------------SHOW CLOCK END----------------------------------*/                      
+  showHearts();
 
-/*
-  /*--- Battery Functions ---*/
-  display.addEventListener('change', function () { if (this.on) {checkAndUpdateBatteryLevel();}
-                                             
-});
-/*----------------------------END OF ON TICK-----------------------------------*/
+/*----------------------------SHOW GAME END--------------------------------------*/ 
+
   
 /*----------------------------START OF FUNCTIONS--------------------------------*/
 
@@ -496,6 +328,178 @@ function checkAndUpdateBatteryLevel() {
     //last else statement 
   else {poop.image = "blank.png";}
 
+  }
+  
+  
+  function changepet(){
+      //----------Pet Evolution Egg -------------------
+  if (userActivity.adjusted.steps < goals.steps/5){
+  pets = 0;
+  age = 10;}
+  
+   //----------Pet Evolution baby Pet -------------------
+  else if ((userActivity.adjusted.steps < ((goals.steps)*2)/5) && (userActivity.adjusted.steps > ((goals.steps*1)/5))) {
+         pets = 1;
+         age = 30;
+    
+  }
+  
+  //----------Pet Evolution baby Pet -------------------
+  
+  else if ((userActivity.adjusted.steps < ((goals.steps)*3)/5)&& (userActivity.adjusted.steps > ((goals.steps*2)/5))){
+         pets = 2;
+         age = 50;
+  }
+  
+    //----------Pet Evolution Adult Pet -------------------
+  
+  else if ((userActivity.adjusted.steps < ((goals.steps)*4)/5)&& (userActivity.adjusted.steps > ((goals.steps*3)/5)))
+           {
+             pets = 3;
+             age = 60;
+           }
+  
+    //----------Pet Evolution Robot Pet -------------------
+  
+  else if ((userActivity.adjusted.steps < goals.steps)&& (userActivity.adjusted.steps > ((goals.steps*4)/5)))
+           {
+             pets = 4;
+             age = 100;
+           }
+  //---------Game Over Pet ------------------
+  
+  else if (userActivity.adjusted.steps > goals.steps){
+    
+    pets = 5;
+    age = 150;
+    
+  } else {
+         pets = 1;
+         age = 10;}
+  }
+  
+  
+  
+  
+  function changePages(){
+    if (buttonnumber == 6){
+    statslabel1.class = "showLabel";
+    statslabel2.class = "showLabel";
+    statslabel1.text = pethyper+   "                      " + pethunger; 
+    statslabel2.text = petnaughty+ "                      " + petdirty; 
+  }
+  
+  else if (buttonnumber == 3){
+    statslabel1.class = "none";
+    statslabel2.class = "showgameLabel";
+  statslabel2.text = points;} 
+  else {
+    statslabel1.class = "none";
+    statslabel2.class = "none";
+  }
+  
+  
+ 
+  
+  //Handle text changes for sleep mode Button 2
+if (button == "on"){
+                    distancelabel.class = "labelseeblue";
+                    firelabel.class  = "labelseeblue";
+                    boltlabel.class  = "labelseeblue";
+                    heartlabel.class  = "labelseeblue";
+                    stairslabel.class  = "labelseeblue";
+                    evolution.class = "none";
+                    pethyper--;
+                    petnaughty--;
+                    pethunger --;
+                    petdirty--;
+                    buttonnumber=0;
+
+}else{
+                    
+                    distancelabel.class = "none";
+                    firelabel.class  = "none";
+                    boltlabel.class  = "none";
+                    heartlabel.class  = "none";
+                    stairslabel.class  = "none";
+                    evolution.class = "meter";
+    
+  }
+ 
+   //health page
+  if (button == "on"){if (seconds % 2 == 0){object.image = "read.jpeg";}
+                    else{object.image = "read1.jpeg";}}
+  else{
+ 
+     //Emotions page
+    if (buttonnumber == 0){
+  if (version == "normal") {object.image = "blank.png";}
+  else{if (seconds%2==0) {object.image = "blank.png";}
+       else{object.image = "button/indicator.png"}}}
+  
+  // Food Page
+  else if (buttonnumber == 1){
+    object.image = "button/objectb1v"+mins%2+"a"+seconds%2+".png";
+    pethunger=0;
+    petnaughty++;
+  }
+  //sleep page
+    else if (buttonnumber == 2){
+   pethyper--;
+    petnaughty--;
+    object.image = "button/sleep" + seconds%2 +".png" ;}
+  
+  //Game Page
+  else if (buttonnumber == 3){
+    if (game < 3 && game >=0){
+  if ((seconds%5) == 0){game++;}
+      
+    }
+    pethunger++;
+    pethyper++;
+  object.image = "button/objectb3gamefrogv"+game+"a" + seconds%2+".png";
+  }
+  
+  //Medicine Page
+  else if (buttonnumber == 4){
+    if (version == "sick"){
+            if (seconds%3 == 0){petdirty = 0;} 
+            object.image ="button/objectb4vsicka" + seconds%2 + ".png" ;
+    }
+    else{
+      pethyper++;
+    if (seconds%2 == 0){object.image ="button/objectb4v" + version+"a0.png";}
+    else{object.image ="button/objectb4vstart.png"; }}}
+  
+  //bath page
+  else if (buttonnumber == 5){petdirty--;
+                              pethyper++;
+                           object.image =   "button/bath" + seconds%2 +".png" ;}
+  
+  //stats page
+  else if (buttonnumber == 6){object.image = "button/stats.png"; }
+  
+  //Timeout page
+  else if (buttonnumber == 7){
+    petnaughty=0;
+    petdirty++;
+    pethunger++;
+    object.image = "button/Timeout" + seconds%2 +".png" ;}
+  
+  }
+  }
+  
+  function showHearts(){
+      if (userActivity.adjusted.steps < goals.steps/5){evolution.text = "♥";}
+  else if ((userActivity.adjusted.steps < ((goals.steps)*2)/5) && (userActivity.adjusted.steps > ((goals.steps*1)/5))) {evolution.text = "♥♥";}
+  else if ((userActivity.adjusted.steps < ((goals.steps)*3)/5)&& (userActivity.adjusted.steps > ((goals.steps*2)/5)))
+  {evolution.text = "♥♥♥";}
+  else if ((userActivity.adjusted.steps < ((goals.steps)*4)/5)&& (userActivity.adjusted.steps > ((goals.steps*3)/5)))
+           {evolution.text = "♥♥♥♥";}
+  else if ((userActivity.adjusted.steps < goals.steps)&& (userActivity.adjusted.steps > ((goals.steps*4)/5)))
+           {evolution.text = "♥♥♥♥♥";}
+  else if (userActivity.adjusted.steps > goals.steps){evolution.text = "♥♥♥♥♥♥";}
+  else {evolution.text = "";}
   }
   
 /*--- Change Date and Background Functions ---*/
