@@ -5,7 +5,7 @@ Versa3 Sense SDK 6.0 - Complete and Tested on Real Device
 
 Stats heavy watch, filled with cute interactions, daily changing pictures, and fun surprises.
 
-![Alt text](https://github.com/SarahBass/Galaxy-Pixel-Pet/blob/main/Promo/2EAC4839-AB62-4E55-95BB-2985E4340299.png)
+![Alt text](https://github.com/SarahBass/Pixel-Pet-Plus-Galaxy/blob/main/promo/Versa3_336_pixel_4.png)
 
 Contents: | Description:
 --------- | ------------
@@ -67,11 +67,10 @@ Pixel Pets are All Original Designs
 ![Alt text](https://github.com/SarahBass/Galaxy-Pixel-Pet/blob/main/Promo/DED877FC-241D-4777-8C96-E103DE7A27AD.png)
 
 
-### Game Over
-
-![Alt text](https://github.com/SarahBass/Galaxy-Pixel-Pet/blob/main/Promo/473917E3-9E24-4860-AFEE-7A9C542E644B.png)
-
-
 ### Sleep Screen
 
 ![Alt text](https://github.com/SarahBass/Galaxy-Pixel-Pet/blob/main/Promo/1EC68961-7F57-4808-B2F1-EFF45811E13C.png)
+
+### Game Screen
+
+![Alt text](https://github.com/SarahBass/Pixel-Pet-Plus-Galaxy/blob/main/promo/Versa3_336_pixel_4%202.png)
