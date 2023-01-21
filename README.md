@@ -5,7 +5,7 @@ Versa3 Sense SDK 6.0 - Complete and Tested on Real Device
 
 Stats heavy watch, filled with cute interactions, daily changing pictures, and fun surprises.
 
-![Alt text](https://github.com/SarahBass/Pixel-Pet-Plus-Galaxy/blob/main/promo/Versa3_336_pixel_4.png)
+![Alt text](https://github.com/SarahBass/Pixel-Pet-Plus-Galaxy/blob/main/promo/cute.png)
 
 Contents: | Description:
 --------- | ------------
@@ -56,16 +56,20 @@ Pixel Pets are All Original Designs
 
 ### Egg
 
-![Alt text](https://github.com/SarahBass/Galaxy-Pixel-Pet/blob/main/Promo/CBB270D9-A1B1-49DB-A0D8-8C4D121491CF.png)
+![Alt text](https://github.com/SarahBass/Pixel-Pet-Plus-Galaxy/blob/main/promo/Versa3_336_pixel_4%203.png)
 
-### Baby Bear
+### Sick Bear
 
-![Alt text](https://github.com/SarahBass/Galaxy-Pixel-Pet/blob/main/Promo/987F3E15-F4B0-4A19-B58E-B6FBBF89AD0E.png)
+![Alt text](https://github.com/SarahBass/Pixel-Pet-Plus-Galaxy/blob/main/promo/Versa3_336_pixel_4.png)
 
-### Robot Bear
+### Happy Bear
 
-![Alt text](https://github.com/SarahBass/Galaxy-Pixel-Pet/blob/main/Promo/DED877FC-241D-4777-8C96-E103DE7A27AD.png)
+![Alt text](https://github.com/SarahBass/Pixel-Pet-Plus-Galaxy/blob/main/promo/Versa3_336_pixel_4%202.png)
 
+
+### Sad Bear
+
+![Alt text](https://github.com/SarahBass/Pixel-Pet-Plus-Galaxy/blob/main/promo/Versa3_336_pixel_4%204.png)
 
 ### Sleep Screen
 
@@ -73,4 +77,4 @@ Pixel Pets are All Original Designs
 
 ### Game Screen
 
-![Alt text](https://github.com/SarahBass/Pixel-Pet-Plus-Galaxy/blob/main/promo/Versa3_336_pixel_4%202.png)
+![Alt text](https://github.com/SarahBass/Pixel-Pet-Plus-Galaxy/blob/main/promo/game.png)
