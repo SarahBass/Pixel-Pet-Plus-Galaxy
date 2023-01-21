@@ -222,8 +222,8 @@ function checkAndUpdateBatteryLevel() {
 }
  
  /*--- CLEAN POOP BY SHAKING WRIST ---*/ 
-  function poopcleanup(){
-    if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
+function poopcleanup(){
+    
  if (Accelerometer) {
    const accelerometer = new Accelerometer({ frequency: 30, batch: 60 });
    accelerometer.addEventListener("reading", () => { 
@@ -241,7 +241,6 @@ function checkAndUpdateBatteryLevel() {
        accelerometer.start();
   }
   else {console.log("This device does NOT have an Accelerometer!");}
-  }
   }
   
    /*--- SHOW ENEMIES OR PET WASTE ---*/ 
