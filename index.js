@@ -111,7 +111,6 @@ clock.ontick = (evt) => {
   if (units.distance == "us"){
   distancelabel.text = (0.000621371 * userActivity.adjusted.distance).toFixed(1) + " mi";}
   else {distancelabel.text = (0.001 * userActivity.adjusted.distance).toFixed(1) + " km";}
-
   stairslabel.text = userActivity.adjusted.elevationGain;
   stepsLabel.text = userActivity.adjusted.steps;
   firelabel.text = userActivity.adjusted.calories;
@@ -157,18 +156,18 @@ if (version  == "normal"){background.image = pets + ".jpeg";}
  }
 
   if (poops <= 0 ) {poops = 0;}
-  if (poops >= 5){poops = 5}
+  if (poops >3){poops = 3}
   
-  if ( petnaughty >= 1000){petnaughty = 1000;}
+  if ( petnaughty >= 100){petnaughty = 100;}
   if (petnaughty <= 0){petnaughty = 0;}
   
-  if ( pethunger >= 1000){pethunger = 1000;}
+  if ( pethunger >= 100){pethunger = 100;}
   if (pethunger <= 0){pethunger = 0;}
   
-  if ( petdirty >= 1000){petdirty = 1000;}
+  if ( petdirty >= 100){petdirty = 100;}
   if (petdirty <= 0){petdirty = 0;}
   
-  if ( pethyper >= 1000){pethyper = 1000;}
+  if ( pethyper >= 100){pethyper = 100;}
   if (pethyper <= 0){pethyper = 0;}
   
    //Reset stats at midnight
@@ -181,7 +180,7 @@ if ((util.zeroPad(hours) == 0)&& (mins == 1)){
   buttonnumber = 0;
 }
   
-    //Buttons 
+    //-------------Buttons --------------------------------
     button1.onclick = function(evt) { buttonnumber++; }
   
     if (button == "off"){button2.onclick = function(evt) { button = "on"; }} 
@@ -190,6 +189,7 @@ if ((util.zeroPad(hours) == 0)&& (mins == 1)){
     //Toggle through 7 button options
     if ( buttonnumber >7){buttonnumber = 0;}
     if (buttonnumber <= 0){buttonnumber = 0;}
+  //---------------------------------------------------------
   
   
    //Move hand to clean Pet Poop or scare away monsters
@@ -204,23 +204,8 @@ if ((util.zeroPad(hours) == 0)&& (mins == 1)){
   //Change version number based on stats
    changepet();
     
-    //if (basic > age) { 
-    if (petnaughty > age){version = "mad";}
-    else if (petdirty > age){version = "sick";}
-  else if (pethunger > age){version = "sad";}
-  else if (pethyper > age){version = "happy";}
-    else {version = "normal";}
-
-  if( buttonnumber == 0){
-    if (pets == 2){ pet.image = "pet/pet" + pets + "v" + version + "a" + seconds%2 + ".png";}
-    else{ if (seconds%2==0){pet.image="pet/pet"+pets +"start.png";}else{
-      pet.image = "pet/pet" + pets + "v" + version + "a1.png";
-    }}
-  }else {pet.image = "blank.png";}
-  
   //Show Heart Meter
-
-  showHearts();
+   showHearts();
 
 /*----------------------------SHOW GAME END--------------------------------------*/ 
 
@@ -236,13 +221,10 @@ function checkAndUpdateBatteryLevel() {
         battery.onchange = (charger, evt) => {batteryLabel.class = "labelgreen";}}
 }
  
-
+ /*--- CLEAN POOP BY SHAKING WRIST ---*/ 
   function poopcleanup(){
     if ((poops > 0) && (userActivity.adjusted.steps < goals.steps) ){
  if (Accelerometer) {
-   //console.log("Poop Level: " + poops);
-   //console.log("Naughty Level: " + petnaughty);
-   //console.log("Basic Level: " + basic);
    const accelerometer = new Accelerometer({ frequency: 30, batch: 60 });
    accelerometer.addEventListener("reading", () => { 
     if (accelerometer.y > 5){   
@@ -262,124 +244,78 @@ function checkAndUpdateBatteryLevel() {
   }
   }
   
-  
+   /*--- SHOW ENEMIES OR PET WASTE ---*/ 
   function showpoop(){
-     if (buttonnumber == 0){
-  // If in egg show snakes instead of poops
-  if (userActivity.adjusted.steps < goals.steps/5 ){
-  if (poops == 0) { poop.image ="blank.png"}
-  else if (poops == 1) {
-     if (seconds % 2 == 0){poop.image = "poop/snake0.png";}
-     else{poop.image = "poop/snake1.png";}}
-  else if (poops == 2) {
-     if (seconds % 2 == 0){poop.image = "poop/snake2.png";}
-     else{poop.image = "poop/snake3.png";}}
-  else if (poops > 2) {
-    petnaughty++;
-     if (seconds % 2 == 0){poop.image = "poop/snake4.png";}
-     else{poop.image = "poop/snake5.png";}}
-    else {poop.image = "blank.png";} 
-  }
-  
-  //if not an egg or not a ghost , show poops
-  
-  //if 0 poops , shows annow every 50 steps
-  
-  else if ((userActivity.adjusted.steps >= goals.steps/5) &&  (userActivity.adjusted.steps < goals.steps*3/5)){
     
-  if (poops == 0) { 
-    if (seconds % 2 == 0){poop.image = "poop/nopoop1.png";}
-     else{poop.image = "poop/nopoop2.png";}}
-  else if (poops == 1) {
-     if (seconds % 2 == 0){poop.image = "poop/poop0.png";}
-     else{poop.image = "poop/poop1.png";}}
-  else if (poops == 2) {
-     if (seconds % 2 == 0){poop.image = "poop/poop2.png";}
-     else{poop.image = "poop/poop3.png";}}
-  else if (poops > 2) {
+    if (buttonnumber == 0){
+    if (poops > 2) {
     petnaughty++;
-    petdirty++;
-     if (seconds % 2 == 0){poop.image = "poop/poop4.png";}
-     else{poop.image = "poop/poop5.png";}}
-   else {poop.image = "blank.png";}
-  }
-  
-  //if adult or robot show monsters instead of poop
-  
+    petdirty++;}
+       
+  // IF egg SHOW snakes 
+  if (userActivity.adjusted.steps < goals.steps/5 ){
+          if (poops == 0) { poop.image ="blank.png";}
+          else {poop.image ="poop/snake" + poops+ seconds%2 + ".png"; }}
+  //IF baby pet SHOW pet waste
+  else if ((userActivity.adjusted.steps >= goals.steps/5) &&
+           (userActivity.adjusted.steps < goals.steps*3/5)){
+           poop.image ="poop/poop" + poops+ seconds%2 + ".png"; }
+  //IF adult or robot SHOW monsters
    else if (userActivity.adjusted.steps >= goals.steps*3/5){
-     if (poops == 0) { 
-    if (seconds % 2 == 0){poop.image = "poop/nice1.png";}
-     else{poop.image = "poop/nice2.png";}}
-  else if (poops == 1) {
-     if (seconds % 2 == 0){poop.image = "poop/annoy1.png";}
-     else{poop.image = "poop/annoy2.png";}}
-  else if (poops == 2) {
-     if (seconds % 2 == 0){poop.image = "poop/annoy3.png";}
-     else{poop.image = "poop/annoy4.png";}}
-  else if (poops > 2) {
-    petnaughty++;
-    petdirty++;
-     if (seconds % 2 == 0){poop.image = "poop/annoy5.png";}
-     else{poop.image = "poop/annoy6.png";}}
-     else {poop.image = "blank.png";}
-  }
-     
-  }
-    //last else statement 
-  else {poop.image = "blank.png";}
-
-  }
+            poop.image ="poop/annoy" + poops+ seconds%2 + ".png"; }
+   }else {poop.image = "blank.png";}}
   
+  
+  
+   /*------------ Change PET BASED ON DATA ---------*/ 
   
   function changepet(){
+    //EMOTIONS
+    if (petnaughty > age){version = "mad";}
+    else if (petdirty > age){version = "sick";}
+  else if (pethunger > age){version = "sad";}
+  else if (pethyper > age){version = "happy";}
+    else {version = "normal";}
+   // HIDE PET WHILE SCROLLING, SHOW PET ON PAGE 1
+  if( buttonnumber == 0){
+    if (pets == 2){ pet.image = "pet/pet" + pets + "v" + version + "a" + seconds%2 + ".png";}
+    else{ if (seconds%2==0){pet.image="pet/pet"+pets +"start.png";}else{
+      pet.image = "pet/pet" + pets + "v" + version + "a1.png";
+    }}
+  }else {pet.image = "blank.png";}
       //----------Pet Evolution Egg -------------------
   if (userActivity.adjusted.steps < goals.steps/5){
-  pets = 0;
-  age = 10;}
-  
+         pets = 0;
+         age = 20;}
    //----------Pet Evolution baby Pet -------------------
-  else if ((userActivity.adjusted.steps < ((goals.steps)*2)/5) && (userActivity.adjusted.steps > ((goals.steps*1)/5))) {
+  else if ((userActivity.adjusted.steps < ((goals.steps)*2)/5) && 
+           (userActivity.adjusted.steps > ((goals.steps*1)/5))) {
          pets = 1;
-         age = 30;
-    
-  }
-  
+         age = 30;}
   //----------Pet Evolution baby Pet -------------------
-  
-  else if ((userActivity.adjusted.steps < ((goals.steps)*3)/5)&& (userActivity.adjusted.steps > ((goals.steps*2)/5))){
+  else if ((userActivity.adjusted.steps < ((goals.steps)*3)/5)&& 
+           (userActivity.adjusted.steps > ((goals.steps*2)/5))){
          pets = 2;
-         age = 50;
-  }
-  
-    //----------Pet Evolution Adult Pet -------------------
-  
-  else if ((userActivity.adjusted.steps < ((goals.steps)*4)/5)&& (userActivity.adjusted.steps > ((goals.steps*3)/5)))
-           {
-             pets = 3;
-             age = 60;
-           }
-  
+         age = 40;}
+  //----------Pet Evolution Adult Pet -------------------
+  else if ((userActivity.adjusted.steps < ((goals.steps)*4)/5)&& 
+           (userActivity.adjusted.steps > ((goals.steps*3)/5))){
+            pets = 3;
+            age = 50;}
     //----------Pet Evolution Robot Pet -------------------
-  
-  else if ((userActivity.adjusted.steps < goals.steps)&& (userActivity.adjusted.steps > ((goals.steps*4)/5)))
-           {
+  else if ((userActivity.adjusted.steps < goals.steps)&& 
+           (userActivity.adjusted.steps > ((goals.steps*4)/5))){
              pets = 4;
-             age = 100;
-           }
+             age = 60;}
   //---------Game Over Pet ------------------
-  
-  else if (userActivity.adjusted.steps > goals.steps){
-    
-    pets = 5;
-    age = 150;
-    
-  } else {
-         pets = 1;
-         age = 10;}
-  }
+    else if (userActivity.adjusted.steps > goals.steps){ 
+             pets = 5;
+             age = 70;}
+    else {   pets = 1;
+             age = 25;}}
   
   
-  
+ /*--- Change PAGES BASED ON BUTTON NUMBER AND ON/OFF ---*/ 
   
   function changePages(){
     if (buttonnumber == 6){
@@ -439,7 +375,7 @@ if (button == "on"){
   
   // Food Page
   else if (buttonnumber == 1){
-    object.image = "button/objectb1v"+mins%2+"a"+seconds%2+".png";
+    object.image = "button/objectb1v"+mins%4+"a"+seconds%2+".png";
     pethunger=0;
     petnaughty++;
   }
@@ -488,6 +424,9 @@ if (button == "on"){
   
   }
   }
+  
+  
+   /*--- Change HEARTS BASED ON STEPS ---*/ 
   
   function showHearts(){
       if (userActivity.adjusted.steps < goals.steps/5){evolution.text = "♥";}
