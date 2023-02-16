@@ -22,7 +22,11 @@ Images    | Image Files and Folders not included on github
  
  Link: [https://gallery.fitbit.com/details/00aad530-2d81-4e8e-ac30-472709d25951]
  
+ Free Virtual Pet
  [https://gallery.fitbit.com/details/aea55ea7-cf02-4d2e-a9f9-8e25851f4f2c]
+ 
+ Free Digital Pet
+ [https://gallery.fitbit.com/details/53f8ef1e-9c56-4699-8972-6f788f1710d1]
  
  Price : Paid $2 USD KEIZEL once released
  
