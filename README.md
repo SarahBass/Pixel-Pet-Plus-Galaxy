@@ -22,6 +22,8 @@ Images    | Image Files and Folders not included on github
  
  Link: [https://gallery.fitbit.com/details/00aad530-2d81-4e8e-ac30-472709d25951]
  
+ [https://gallery.fitbit.com/details/aea55ea7-cf02-4d2e-a9f9-8e25851f4f2c]
+ 
  Price : Paid $2 USD KEIZEL once released
  
 Fitbit clock filled with cute interactions, daily changing pictures, and fun surprises.
