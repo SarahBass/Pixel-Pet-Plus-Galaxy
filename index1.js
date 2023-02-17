@@ -302,15 +302,15 @@ function checkAndUpdateBatteryLevel() {
     
       //Change animation in background to show game over or pet waste
     //egg No Waste
-  if (userActivity.adjusted.steps < goals.steps/5 || buttonnumber != 0){
+  if (userActivity.adjusted.steps < goals.steps/5 && buttonnumber == 0){
     poop.image = "poop/snakev" + poops+ "a"+seconds%2 + ".png";
   }
     //Pet makes Waste
-  else if ((userActivity.adjusted.steps > goals.steps/5) &&  (userActivity.adjusted.steps < goals.steps)){
+  else if (((userActivity.adjusted.steps > goals.steps/5) &&  (userActivity.adjusted.steps < goals.steps)) && buttonnumber == 0){
  //poop/poopv0a0.png
     poop.image = "poop/poopv" + poops+ "a"+seconds%2 + ".png";
   //Ghost shows "game over"
-  }else if (userActivity.adjusted.steps >= goals.steps){ poop.image = "poop/gameoverv" + poops+ "a"+seconds%2 + ".png";}
+  }else if (userActivity.adjusted.steps >= goals.steps && buttonnumber == 0 ){ poop.image = "poop/gameoverv" + poops+ "a"+seconds%2 + ".png";}
 else {poop.image = "blank.png";}
 
   }
