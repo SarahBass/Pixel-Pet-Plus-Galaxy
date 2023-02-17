@@ -66,10 +66,11 @@ const boltlabel = document.getElementById("boltlabel");
 const heartlabel = document.getElementById("heartlabel");
 const stairslabel = document.getElementById("stairslabel");
 const distancelabel = document.getElementById("distancelabel");
-const button2 = document.getElementById("button-1");
-const button1 = document.getElementById("button-2");
-const buttonmid = document.getElementById("button-3");
-const buttonleft = document.getElementById("button-4");
+let button2 = document.getElementById("button-1");
+let button1 = document.getElementById("button-2");
+let buttonmid = document.getElementById("button-3");
+let buttonleft = document.getElementById("button-4");
+
 var demoinstance = document.getElementById("demoinstance");
 var demogroup = demoinstance.getElementById("demogroup");
 
@@ -78,7 +79,7 @@ const hungermeter = document.getElementById("hungermeter");
 
 
   
-  if (HeartRateSensor && appbit.permissions.granted("access_heart_rate")) {
+    if (HeartRateSensor && appbit.permissions.granted("access_heart_rate")) {
    const hrm = new HeartRateSensor();
   hrm.addEventListener("reading", () => {
     heartlabel.text = (`${hrm.heartRate}`);
@@ -117,7 +118,7 @@ clock.ontick = (evt) => {
   stepsLabel.text = userActivity.adjusted.steps;
   firelabel.text = userActivity.adjusted.calories;
   boltlabel.text = userActivity.adjusted.activeZoneMinutes.total;
-  heartlabel.text = "off";  
+  heartlabel.text = "--";  
   checkAndUpdateBatteryLevel();
        sleepmeter.text = basic+ "                     "+ (age - full);
        hungermeter.text = dirty+ "                     "+petnaughty;
@@ -134,6 +135,7 @@ if (userActivity.adjusted.steps > goals.steps){background.image = "Gameover.jpeg
   else{background.image = days + ".jpeg";}
   
  //Pet creates waste based on steps 
+  
   if ((userActivity.adjusted.steps%25) == 0){poops++;}
   if (poops < 0 ) {poops = 0;}
   if (poops > 3){poops = 3}
@@ -142,20 +144,28 @@ if (userActivity.adjusted.steps > goals.steps){background.image = "Gameover.jpeg
   if ( petnaughty > 100){petnaughty = 100;}
   if (petnaughty < 0){petnaughty = 0;}
   
+    //Not Cleaning makes Pet Dirty
+  if ( dirty > 100){dirty = 100;}
+  if (dirty < 0){dirty = 0;}
+  
+     //Eating makes pet full
+  if ( full > 100){full = 100;}
+  if (full < 0){full = 0;} 
+  
   //Sleeping increases cuteness level of form
   if (basic > 50){basic = 0;}
   if (basic < 0){basic = 0;} 
   
 
 
-  
+
    //Button to show heart
    button2.onclick = function(evt) { 
      poops--;
    console.log("Basic Level: " + basic);
    console.log("Naughty Level: " + petnaughty);
    poop.image = "poop/heart.png"; }
-  
+
   //--------------CHANGE PET FORM IN FOREGROUND ------------------
   
   showPet();
@@ -215,10 +225,11 @@ function checkAndUpdateBatteryLevel() {
     pet.image = "pet/"+ pets + "v" + version + "a" + seconds%2 + ".png";
   }
       else{
-        if ((pets == "child") && (days != 4 || days != 0 || days != 5 ))
-          {pet.image = pet.image = "pet/"+ pets + "v" + version + "a" + seconds%2 + ".png";}
-        else{pet.image = "pet/"+ days +pets + "v" + version + "a" + seconds%2 + ".png";}
-         }
+        if (pets == "child"){
+          if ((days == 4) || (days == 0)||(days == 5))
+      {pet.image = "pet/"+ days+ pets + "v" + version + "a" + seconds%2 + ".png";}
+        else{pet.image = "pet/" +pets + "v" + version + "a" + seconds%2 + ".png";}
+         }else  {pet.image = "pet/"+ days+ pets + "v" + version + "a" + seconds%2 + ".png";}}
       
     //----------Pet Evolution Egg -------------------
   if (userActivity.adjusted.steps < goals.steps/5){
@@ -263,7 +274,7 @@ function checkAndUpdateBatteryLevel() {
   }}
   
   function showPoop(){
-    
+   
      if (poops > 0){petnaughty++; dirty++;}
     
     //clear poops by moving wrist
@@ -292,14 +303,14 @@ function checkAndUpdateBatteryLevel() {
       //Change animation in background to show game over or pet waste
     //egg No Waste
   if (userActivity.adjusted.steps < goals.steps/5 || buttonnumber != 0){
-    poop.image ="blank.png";
+    poop.image = "poop/snakev" + poops+ "a"+seconds%2 + ".png";
   }
     //Pet makes Waste
   else if ((userActivity.adjusted.steps > goals.steps/5) &&  (userActivity.adjusted.steps < goals.steps)){
  //poop/poopv0a0.png
     poop.image = "poop/poopv" + poops+ "a"+seconds%2 + ".png";
   //Ghost shows "game over"
-  }else if (userActivity.adjusted.steps >= goals.steps){ poop.image = "poop/gameover"+seconds%2+".png";}
+  }else if (userActivity.adjusted.steps >= goals.steps){ poop.image = "poop/gameoverv" + poops+ "a"+seconds%2 + ".png";}
 else {poop.image = "blank.png";}
 
   }
@@ -320,19 +331,21 @@ else {poop.image = "blank.png";}
      //Show large text Clock if clicked
 button1.onclick = function(evt) { buttonnumber++; }
     buttonleft.onclick = function(evt) { buttonnumber--; }
-    buttonleft.onclick = function(evt) { buttonmiddle++; }
+    buttonmid.onclick = function(evt) { buttonmiddle++; }
 //Toggle through 7 button options
     if ( buttonnumber >7){buttonnumber = 0;}
     if (buttonnumber <= 0){buttonnumber = 0;}
     
-    if (buttonnumber == 6){sleepmeter.class= "meters"; hungermeter.class="meters";}
+    if (buttonnumber == 6 && (buttonmiddle ==0)){sleepmeter.class= "meters"; hungermeter.class="meters";}
     else{sleepmeter.class= "none"; hungermeter.class="none";}
     
-    if (buttonnumber == 1){full++; petnaughty++; dirty++;}
+    if (buttonnumber == 1){
+        full++; basic++;
+        if (full > age ) {petnaughty++;}}
     else if (buttonnumber == 2){basic++;}
-    else if (buttonnumber == 3){petnaughty--;}
+    else if (buttonnumber == 3){petnaughty--;full--;}
     else if (buttonnumber == 4){petnaughty--;basic++;}
-    else if (buttonnumber == 5){dirty--;basic++;}
+    else if (buttonnumber == 5){dirty--;petnaughty--;}
     else if (buttonnumber == 7){petnaughty--;basic--;}
     else{}
     
@@ -406,5 +419,6 @@ button1.onclick = function(evt) { buttonnumber++; }
 }
 /*----------------------------END OF FUNCTIONS--------------------------------*/
 /*-------------------------------END OF CODE----------------------------------*/
+
 
 
