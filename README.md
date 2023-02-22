@@ -28,6 +28,9 @@ Private Link: [https://gallery.fitbit.com/details/00aad530-2d81-4e8e-ac30-472709
  Free Digital Pet
  [https://gallery.fitbit.com/details/53f8ef1e-9c56-4699-8972-6f788f1710d1]
  
+ Ad Free Version of Digital Pet Clock
+ [https://gallery.fitbit.com/details/d8ef41d6-98e5-4169-8a8a-ac74eafad192]
+ 
  
 Fitbit clock filled with cute interactions, daily changing pictures, and fun surprises.
 
